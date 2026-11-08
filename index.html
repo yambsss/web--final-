@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dnkq</title>
+
+  <!-- Fonts (falls back to system fonts when offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Connects the design file -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ================= LOGIN / REGISTER ================= -->
+  <section id="auth">
+    <div class="auth-art" aria-hidden="true">
+      <div class="court-lines"></div>
+    </div>
+
+    <div class="auth-card">
+      <div class="brand brand-big">
+        <span class="ball"></span>
+        <span class="brand-name">dnkq</span>
+      </div>
+      <p class="auth-sub">Pickleball court reservations, rentals and drinks.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-action="authTab" data-tab="login" role="tab">Log in</button>
+        <button class="tab" data-action="authTab" data-tab="register" role="tab">Register</button>
+      </div>
+
+      <!-- Login form -->
+      <form id="loginForm" data-form="login" autocomplete="off">
+        <label>Username
+          <input name="username" type="text" required>
+        </label>
+        <label>Password
+          <input name="password" type="password" required>
+        </label>
+        <p class="form-error" id="loginError"></p>
+        <button class="btn btn-primary btn-block" type="submit">Log in</button>
+      </form>
+
+      <!-- Register form (hidden until the tab is clicked) -->
+      <form id="registerForm" data-form="register" class="hidden" autocomplete="off">
+        <label>Full name
+          <input name="name" type="text" required>
+        </label>
+        <label>Contact number
+          <input name="contact" type="tel" placeholder="09XXXXXXXXX" required>
+        </label>
+        <label>Username
+          <input name="username" type="text" required>
+        </label>
+        <label>Password
+          <input name="password" type="password" minlength="4" required>
+        </label>
+        <p class="form-error" id="registerError"></p>
+        <button class="btn btn-primary btn-block" type="submit">Create account</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= MAIN APP ================= -->
+  <div id="app" class="hidden">
+
+    <!-- Left menu -->
+    <aside id="sidebar">
+      <div class="brand">
+        <span class="ball"></span>
+        <span class="brand-name">dnkq</span>
+      </div>
+      <nav id="menu" aria-label="Main menu"></nav>
+      <button class="menu-item logout" data-action="logout">
+        <span class="menu-icon">🚪</span><span>Log out</span>
+      </button>
+    </aside>
+    <div id="overlay" data-action="closeSidebar"></div>
+
+    <div class="main">
+      <!-- Top bar: page title on the left, search + user on the upper right -->
+      <header class="topbar">
+        <button id="menuToggle" class="icon-btn" data-action="openSidebar" aria-label="Open menu">☰</button>
+        <h1 id="pageTitle">Dashboard</h1>
+
+        <div class="topbar-right">
+          <div class="search-wrap">
+            <input id="search" type="search" placeholder="Search the system…" autocomplete="off" aria-label="Search the system">
+            <div id="searchResults" class="search-results hidden"></div>
+          </div>
+          <div class="user-chip" id="userChip"></div>
+        </div>
+      </header>
+
+      <main id="view"></main>
+    </div>
+  </div>
+
+  <div id="modalRoot"></div>
+  <div id="toastRoot" aria-live="polite"></div>
+
+  <!-- Connects the logic file -->
+  <script src="script.js"></script>
+</body>
+</html>
